@@ -1,5 +1,5 @@
 // Api server url
-const url = 'https://bsale-server.up.railway.git papp/products';
+const url = 'https://bsale-server.up.railway.app/products';
 
 document.addEventListener('DOMContentLoaded', async () => {
   try {
