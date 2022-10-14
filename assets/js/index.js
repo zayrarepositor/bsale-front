@@ -97,7 +97,7 @@ const searchProducts = async () => {
   }
   setTimeout(() => {
     $('#search-input').blur();
-    $('#search-input').val('Buscar producto...');
+    $('#search-input').val('');
   }, 5000);
 };
 
