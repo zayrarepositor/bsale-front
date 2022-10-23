@@ -195,8 +195,7 @@ consuma).
 
 <p align="center"></p>
 
-![1](https://user-images.githubusercontent.com/95602965/195953883-552f495b-6d46-4135-8a38-9631f19b6f8e.png)
-
+![1](https://user-images.githubusercontent.com/95602965/197380381-7ea52b0a-831a-4715-982c-7c2667d2f70b.png)
 
 <h2 align="center">---------------- ENGLISH ----------------</h2>
 
