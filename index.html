@@ -17,8 +17,7 @@
       rel="icon"
       href="./assets/img/icon32.png"
     />
-
-    <!-- Bootstrap -->
+    <!-- Bootstrap 4 -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
@@ -45,36 +44,54 @@
   <body>
     <header class="sticky-top header-bg">
       <div
-        class="bg-primary py-1 text-center text-white text-uppercase header-offer"
+        class="bg-primary py-1 text-center text-white text-uppercase py-1 header-offer"
       >
         BS store - bebidas y snacks
       </div>
       <section class="container py-3">
         <div class="row">
           <div class="col-md-3 my-auto">
-            <img src="./assets/img/1.png" alt="" srcset="" width="150" />
+            <!-- Logo -->
+            <img src="./assets/img/bsale.png" alt="img not found" width="150" />
           </div>
           <div class="col-md-6 d-flex justify-content-center h-100 w-75">
+            <!-- Search bar div (non-specific filter by name) with responsive behavior -->
             <div class="searchbar d-none d-md-block">
-              <input
-                class="form-control"
-                type="text"
-                name=""
-                placeholder="Buscar producto..."
-                id="search-input"
-                onkeyup="searchProducts()"
-              />
+              <!-- Form for the request to the rest api. novalidate is used to avoid html validation messages-->
+              <form id="form" class="text-center" novalidate>
+                <div class="form-group">
+                  <!-- Input (text type) for product name. Use oninput event to execute validation function (validateInput) when a user writes something in the input field -->
+                  <input
+                    class="form-control mb-3 text-center"
+                    type="text"
+                    name=""
+                    placeholder="Buscar producto..."
+                    id="search-input-b"
+                    oninput="validateInput()"
+                  />
+                  <!-- Message for failed validation -->
+                  <small class="form-text text-danger" id="search-msg"></small>
+                </div>
+                <!-- Submit type button to execute the request -->
+                <button class="btn btn-primary text-uppercase" type="submit">
+                  buscar
+                </button>
+              </form>
+              <!-- Div for alert when request has failed -->
+              <div id="alert-div"></div>
             </div>
           </div>
-          <div class="col-md-3 d-flex justify-content-end">
-            <button class="btn btn-outline-dark" type="submit">
+          <!-- shopping cart icon div -->
+          <div class="col-md-3 d-flex justify-content-end align-items-center">
+            <div>
+              <!-- shopping cart icon -->
               <i class="bi-cart-fill me-1"></i>
               <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-            </button>
+            </div>
           </div>
         </div>
-
         <div class="text-center">
+          <!-- Responsive navbar for product categories -->
           <nav class="navbar navbar-expand-lg navbar-light">
             <button
               class="navbar-toggler"
@@ -87,15 +104,14 @@
             >
               <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <!-- List of categories for nav bar menu  -->
               <ul class="navbar-nav mx-auto pt-3 h5 text-uppercase">
                 <li class="nav-item">
                   <a class="nav-link" href="#" onclick="getAllProducts()"
                     >Todos los productos</a
                   >
                 </li>
-
                 <li class="nav-item">
                   <a
                     class="nav-link"
@@ -158,11 +174,17 @@
         </div>
       </section>
     </header>
+    <!-- Products section -->
     <section class="py-5">
       <div class="container">
-        <div class="row" id="product-container"></div>
+        <!-- Container where product cards will be injected -->
+        <div class="row" id="product-container">
+          <!-- Product cards will be created here -->
+        </div>
       </div>
     </section>
+
+    <!-- Bsale Footer -->
     <footer class="pt-5" id="footer">
       <div class="container">
         <div
@@ -184,16 +206,23 @@
                 <a href="https://www.bsale.cl/" target="_blank">Get Started</a>
               </li>
               <li>
-                <a href="https://www.bsale.cl/" target="_blank">VVideos</a>
+                <a href="https://www.bsale.cl/" target="_blank">Videos</a>
               </li>
             </ul>
           </div>
           <div class="col-xs-12 col-sm-4 col-md-4"></div>
           <div class="col-xs-12 col-sm-4 col-md-4">
-            <h5>Bsale Challenge</h5>
+            <h5>Prueba tecnica - Bsale</h5>
             <ul class="list-unstyled quick-links">
-              <li>Desarrolladora</li>
               <li>
+                <a
+                  href="https://bsale-server.up.railway.app/api-docs"
+                  target="_blank"
+                  >Documentación Backend</a
+                >
+              </li>
+              <li>
+                Desarrollado por
                 <a
                   href="https://zayra-velasco-developer.netlify.app/"
                   target="_blank"
@@ -204,15 +233,13 @@
                 <a href="https://github.com/zayrarepositor" target="_blank"
                   >GitHub</a
                 >
-              </li>
-              <li>
+                -
                 <a
                   href="https://www.linkedin.com/in/zayra-velasco"
                   target="_blank"
                   >LinkedIn</a
                 >
-              </li>
-              <li>
+                -
                 <a href="mailto:zayra.contacto@gmail.com" target="_blank"
                   >Email</a
                 >
@@ -221,29 +248,92 @@
           </div>
         </div>
       </div>
+      <!-- Zayra Carousel -->
+      <div
+        id="zayCarousel"
+        class="carousel slide bg-primary text-white text-uppercase text-center py-1 header-offer"
+        data-ride="carousel"
+      >
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <strong>Prueba tecnica: Bsale</strong>
+          </div>
+          <div class="carousel-item">
+            <strong>
+              Desarrolladora:
+              <a
+                class="text-white"
+                href="https://zayra-velasco-developer.netlify.app/"
+                target="_blank"
+                >Zayra Velasco</a
+              >
+            </strong>
+          </div>
+          <div class="carousel-item">
+            <strong>
+              Contacto:
+              <a
+                class="text-white"
+                href="https://github.com/zayrarepositor"
+                target="_blank"
+                >GitHub</a
+              >
+              -
+              <a
+                class="text-white"
+                href="https://www.linkedin.com/in/zayra-velasco"
+                target="_blank"
+                >LinkedIn</a
+              >
+              -
+              <a
+                class="text-white"
+                href="mailto:zayra.contacto@gmail.com"
+                target="_blank"
+                >Email</a
+              >
+            </strong>
+          </div>
+        </div>
+      </div>
+      <!-- Botton bar -->
       <div class="bg-dark py-3">
         <div
           class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white"
         >
-          <p class="h6">© BS - All Rights Reserved</p>
+          <p>
+            <a
+              href="https://bsale-server.up.railway.app/api-docs"
+              target="_blank"
+              >Documentación Backend</a
+            >
+          </p>
+          <p class="h6 text-muted">
+            ©
+            <span>
+              <script>
+                var f = new Date();
+                document.write(f.getFullYear());
+              </script>
+            </span>
+            Zayra Velasco - All Rights Reserved
+          </p>
         </div>
       </div>
     </footer>
+    <!-- Jquery script -->
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
       crossorigin="anonymous"
     ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-      crossorigin="anonymous"
-    ></script>
+    <!-- Bootstrap script -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
       integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
       crossorigin="anonymous"
     ></script>
+    <!-- Instructions for page behavior (Get products (filtered or not) from the database, display products, etc) -->
     <script src="assets/js/index.js"></script>
   </body>
 </html>
